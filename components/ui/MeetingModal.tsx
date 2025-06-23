@@ -3,7 +3,6 @@ import Image from 'next/image'
 import {
   Dialog,
   DialogContent,
-  DialogTrigger,
 } from "@/components/ui/dialog"
 import { Button } from './button';
 import { cn } from '@/lib/utils';
@@ -22,7 +21,6 @@ interface MeetingModelsPops {
 const MeetingModal = ({isOpen , onClose  , title , className , children , handleClick , buttonText , image, buttonIcon}:MeetingModelsPops) => {
   return (
         <Dialog open = {isOpen} onOpenChange = {onClose} >
-        <DialogTrigger>Open</DialogTrigger>
         <DialogContent className = "flex w-full max-w-[520px] flex-col gap-6 border-none bg-gray-800 px-6 py-9 text-white">
             <div className='flex flex-col gap-6'>
                 {image && (
