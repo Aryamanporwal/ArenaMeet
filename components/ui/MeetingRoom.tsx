@@ -22,7 +22,7 @@ const MeetingRoom = () => {
     const searchParams = useSearchParams();
     const isPersonalRoom = !!searchParams.get('personal')
     const [layout, setLayout ] = useState<CallLayoutType>('speaker-left')
-    const [showParticipants , setShowParticipants] = useState(false);
+    const [showParticipant , setShowParticipant] = useState(false);
     const {useCallCallingState} = useCallStateHooks();
     const callingState = useCallCallingState();
 
@@ -38,7 +38,7 @@ const MeetingRoom = () => {
                 return <SpeakerLayout participantsBarPosition="right"/>
 
         }
-    };
+    }
   return (
     <section className = "relative h-screen w-full overflow-hidden pt-4 text-white">
         <div className = "relative flex size-full items-center justify-center">
@@ -48,14 +48,14 @@ const MeetingRoom = () => {
             <div
             className={cn(
                 "fixed top-0 right-0 h-screen w-full max-w-xs bg-[#1f2a35] z-50 shadow-xl transition-transform duration-300 ease-in-out overflow-y-auto rounded-l-lg border-l border-[#2c3a48]",
-                showParticipants ? "translate-x-0" : "translate-x-full"
+                showParticipant ? "translate-x-0" : "translate-x-full"
             )}
             >
             <div className="p-4 space-y-4">
                 <div className="flex items-center justify-between">
                 <h2 className="text-lg font-semibold text-white">Participants</h2>
                 <button
-                    onClick={() => setShowParticipants(false)}
+                    onClick={() => setShowParticipant(false)}
                     className="text-gray-400 hover:text-white transition"
                 >
                     ✕
@@ -75,8 +75,12 @@ const MeetingRoom = () => {
             </div>
 
                 {/* Stream SDK Component */}
-                <CallParticipantsList onClose={() => setShowParticipants(false)} />
+                <CallParticipantsList onClose={() => setShowParticipant(false)} />
             </div>
+            </div>
+
+
+
             <div className = "fixed bottom-0 flex w-full items-center justify-center gap-5 flex-wrap">
                 <CallControls  onLeave = {()=> router.push('/')}/>
                     <DropdownMenu >
@@ -89,9 +93,9 @@ const MeetingRoom = () => {
                         {['Grid', 'Speaker-left' , 'Speaker-right'].map((item, index)=>(
                             <div key = {index}>
                                 <DropdownMenuItem className = "cursor-pointer"
-                                onClick={()=>
+                                onClick={()=>{
                                     setLayout(item.toLowerCase() as CallLayoutType)
-                                }>
+                                }}>
                                     {item}
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator 
@@ -101,7 +105,7 @@ const MeetingRoom = () => {
                     </DropdownMenuContent>
                     </DropdownMenu>
                     <CallStatsButton/>
-                    <button onClick= {()=> setShowParticipants((prev)=>!prev)}>
+                    <button onClick= {()=> setShowParticipant((prev)=>!prev)}>
                         <div className = " bg-[#19232d] px-4 py-2 hover:bg-[#4c535b] cursor-pointer rounded-2xl">
                             <Users size = {20} className = "text-white"/>
                         </div>
