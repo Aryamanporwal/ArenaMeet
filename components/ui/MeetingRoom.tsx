@@ -22,7 +22,7 @@ const MeetingRoom = () => {
     const searchParams = useSearchParams();
     const isPersonalRoom = !!searchParams.get('personal')
     const [layout, setLayout ] = useState<CallLayoutType>('speaker-left')
-    const [showParticipant , setShowParticipant] = useState(false);
+    const [showParticipants , setShowParticipants] = useState(false);
     const {useCallCallingState} = useCallStateHooks();
     const callingState = useCallCallingState();
 
@@ -38,15 +38,15 @@ const MeetingRoom = () => {
                 return <SpeakerLayout participantsBarPosition="right"/>
 
         }
-    }
+    };
   return (
     <section className = "relative h-screen w-full overflow-hidden pt-4 text-white">
         <div className = "relative flex size-full items-center justify-center">
             <div className = "flex size-full max-w-[1000px] items-center">
                 <CallLayout/>
             </div>
-            <div className = {cn("h-[calc(100vh-86px)] hidden ml-2",{'show-block': showParticipant})}>
-                <CallParticipantsList onClose={()=> setShowParticipant(false)}/>
+            <div className = {cn("h-[calc(100vh-86px)] hidden ml-2",{'show-block': showParticipants,})}>
+                <CallParticipantsList onClose={()=> setShowParticipants(false)}/>
             </div>
             <div className = "fixed bottom-0 flex w-full items-center justify-center gap-5 flex-wrap">
                 <CallControls  onLeave = {()=> router.push('/')}/>
@@ -60,9 +60,9 @@ const MeetingRoom = () => {
                         {['Grid', 'Speaker-left' , 'Speaker-right'].map((item, index)=>(
                             <div key = {index}>
                                 <DropdownMenuItem className = "cursor-pointer"
-                                onClick={()=>{
+                                onClick={()=>
                                     setLayout(item.toLowerCase() as CallLayoutType)
-                                }}>
+                                }>
                                     {item}
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator 
@@ -72,7 +72,7 @@ const MeetingRoom = () => {
                     </DropdownMenuContent>
                     </DropdownMenu>
                     <CallStatsButton/>
-                    <button onClick= {()=> setShowParticipant((prev)=>!prev)}>
+                    <button onClick= {()=> setShowParticipants((prev)=>!prev)}>
                         <div className = " bg-[#19232d] px-4 py-2 hover:bg-[#4c535b] cursor-pointer rounded-2xl">
                             <Users size = {20} className = "text-white"/>
                         </div>
