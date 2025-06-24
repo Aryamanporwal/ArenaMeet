@@ -1,6 +1,6 @@
 
 #  ArenaMeet 
-  ##Online Video Meeting Platform
+  ## Online Video Meeting Platform
 
 **ArenaMeet** is a modern, secure, and seamless **online meeting platform** built for effortless communication, collaboration, and connection. Whether you're hosting a quick check-in, a brainstorming session, or a large-scale virtual event — ArenaMeet brings people together in a clean and powerful digital arena.
 
