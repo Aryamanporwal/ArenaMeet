@@ -45,8 +45,37 @@ const MeetingRoom = () => {
             <div className = "flex size-full max-w-[1000px] items-center">
                 <CallLayout/>
             </div>
-            <div className = {cn("h-[calc(100vh-86px)] hidden ml-2",{'show-block': showParticipants,})}>
-                <CallParticipantsList onClose={()=> setShowParticipants(false)}/>
+            <div
+            className={cn(
+                "fixed top-0 right-0 h-screen w-full max-w-xs bg-[#1f2a35] z-50 shadow-xl transition-transform duration-300 ease-in-out overflow-y-auto rounded-l-lg border-l border-[#2c3a48]",
+                showParticipant ? "translate-x-0" : "translate-x-full"
+            )}
+            >
+            <div className="p-4 space-y-4">
+                <div className="flex items-center justify-between">
+                <h2 className="text-lg font-semibold text-white">Participants</h2>
+                <button
+                    onClick={() => setShowParticipant(false)}
+                    className="text-gray-400 hover:text-white transition"
+                >
+                    ✕
+                </button>
+                </div>
+
+                {/* Optional Search Bar */}
+                <div className="relative">
+                <input
+                    type="text"
+                    placeholder="Search..."
+                    className="w-full rounded-md bg-[#0e141b] text-sm text-white px-4 py-2 pl-10 outline-none placeholder-gray-400"
+                />
+                <span className="absolute left-3 top-2.5 text-white opacity-70">
+                    🔍
+                </span>
+            </div>
+
+                {/* Stream SDK Component */}
+                <CallParticipantsList onClose={() => setShowParticipant(false)} />
             </div>
             <div className = "fixed bottom-0 flex w-full items-center justify-center gap-5 flex-wrap">
                 <CallControls  onLeave = {()=> router.push('/')}/>
