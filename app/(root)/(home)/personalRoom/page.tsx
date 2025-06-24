@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 
 const Table = ({title , description}:{title : string ; description: string;}) =>(
   <div className = "flex flex-col items-start gap-2 xl:flex-row">
-    <h1 className='text-base font-medium text-cyan-700 lg:text-l xl:min-w-32 border-l-black "'>{title}</h1>
+    <h1 className='text-base  text-cyan-700 lg:text-l xl:min-w-32 font-bold border-l-black "'>{title}</h1>
     <h1 className='truncate text-sm font-bold max-sm:max-w-[320px] lg:text-l'>{description}</h1>
 
   </div>
@@ -35,7 +35,7 @@ const PersonalRoom = () => {
             }
           })
     }
-    router.push('/meeting/${meetingId')
+    router.push(`/meeting/${meetingId}?personal=true`)
   }
   return (
     <section className = "flex size-full flex-col gap-10 text-white">
