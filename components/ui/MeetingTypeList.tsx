@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import { Textarea } from './textarea';
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Input } from "@/components/ui/input"
 
 
 
@@ -152,11 +153,7 @@ const MeetingTypeList = () => {
         buttonText="Join Meeting"
         handleClick={() => router.push(values.link)}
       >
-        {/* <Input
-          placeholder="Meeting link"
-          onChange={(e) => setValues({ ...values, link: e.target.value })}
-          className="border-none bg-dark-3 focus-visible:ring-0 focus-visible:ring-offset-0"
-        /> */}
+        
       </MeetingModal>
 
         <MeetingModal
@@ -167,6 +164,23 @@ const MeetingTypeList = () => {
           buttonText = "Start Meeting"
           handleClick = {createMeeting}
           />
+
+        <MeetingModal
+          isOpen = {meetingState ==='isJoiningMeeting'}
+          onClose = {() => setMeetingState(undefined)}
+          title = "Paste the link here..."
+          className = "text-center"
+          buttonText = "Join Meeting"
+          handleClick = {()=>router.push(values.link)}
+          />
+
+          <Input
+          placeholder="Meeting link"
+          onChange={(e) => setValues({ ...values, link: e.target.value })}
+          className="border-none bg-gray-800 focus-visible:ring-0 focus-visible:ring-offset-0"
+        />
+
+
       </section>
   );
 };
