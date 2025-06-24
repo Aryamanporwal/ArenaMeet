@@ -10,6 +10,9 @@ import { toast } from "sonner";
 import { Textarea } from './textarea';
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+
+
+
 const MeetingTypeList = () => {
   const router = useRouter();
   const [meetingState , setMeetingState] = useState<'isScheduleMeeting'|'isJoiningMeeting'|'isInstantMeeting'|undefined>()
@@ -59,6 +62,7 @@ const MeetingTypeList = () => {
         toast("Failed to Create Meeting ❌");
       }
   }
+    const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${callDetails?.id}`
 
   return (
     <section className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
@@ -120,11 +124,11 @@ const MeetingTypeList = () => {
               timeFormat = "HH:mm"
               timeIntervals = {15}
               timeCaption = "time"
-              timeCaption="time"
               dateFormat= "MMMM d, yyyy h:mm aa"
               className = "w-full rounded bg-gray-950 p-2 focus:outline-none"
             />
           </div>
+          </MeetingModal>
         ):(
           <MeetingModal
           isOpen = {meetingState ==='isScheduleMeeting'}
@@ -132,8 +136,8 @@ const MeetingTypeList = () => {
           title = "Meeting Created"
           className = "text-center"
           handleClick = {()=>{
-            // navigator.clipboard.writeText(meetinglink);
-            toast("Title of Link Copied")
+            navigator.clipboard.writeText(meetingLink);
+            toast("Link Copied")
           }}
           image = "/icons/checked.svg"
           buttonIcon = "/icons/copy.svg"
@@ -148,11 +152,11 @@ const MeetingTypeList = () => {
         buttonText="Join Meeting"
         handleClick={() => router.push(values.link)}
       >
-        <Input
+        {/* <Input
           placeholder="Meeting link"
           onChange={(e) => setValues({ ...values, link: e.target.value })}
           className="border-none bg-dark-3 focus-visible:ring-0 focus-visible:ring-offset-0"
-        />
+        /> */}
       </MeetingModal>
 
         <MeetingModal

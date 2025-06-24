@@ -1,12 +1,13 @@
+import CallList from '@/components/ui/callList'
 import React from 'react'
 
 const recordings = () => {
   return (
-    <section className = "flex size-full flex-cl gap-10 text-white">
+    <section className = "flex size-full flex-col gap-10 text-white">
       <h1 className = 'text-3xl font-bold'>
-        recordings
+        Recordings
       </h1>
-
+      <CallList type="recordings"/>
     </section>
   )
 }
