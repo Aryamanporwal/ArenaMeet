@@ -3,8 +3,17 @@ import React from 'react';
 
 const Home = () => {
   const now = new Date();
-  const time = now.toLocaleTimeString('en-IN' , {hour: '2-digit', minute: '2-digit'});
-  const date = (new Intl.DateTimeFormat('en-IN', { dateStyle: 'full'}).format(now));
+  const time = now.toLocaleTimeString('en-IN', {
+  hour: '2-digit',
+  minute: '2-digit',
+  hour12: true,
+  timeZone: 'Asia/Kolkata' // Force IST
+  });
+
+  const date = new Intl.DateTimeFormat('en-IN', {
+    dateStyle: 'full',
+    timeZone: 'Asia/Kolkata' // Ensure IST for date as well
+  }).format(now);
 
   return (
     <section className="flex size-full flex-col gap-10 text-white">
